@@ -1,4 +1,4 @@
-date,ridership,temperature,WT01,WT02,WT03,WT04,WT05,WT06,WT08,WT09,WT10,Lolla,marathon,thanksgiving,christmas
+date,ridership,temperature,WT01,WT02,WT03,WT04,WT05,WT06,WT08,WT09,WT10,airport_Lolla,marathon,thanksgiving,christmas
 2019-01-01,12492,31.5,1.0,0.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,0.0,0.0
 2019-01-02,17693,29.5,1.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
 2019-01-03,17565,33.0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
