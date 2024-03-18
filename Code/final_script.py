@@ -174,7 +174,7 @@ def get_clean_data(raw_path, place_name):
 
 if __name__ == '__main__':
     # run the pull_data script
-    #pull_data.main()
+    pull_data.main()
     
     # Read the data
     event_list = json.load(open(r'event_list.json', 'r'))
