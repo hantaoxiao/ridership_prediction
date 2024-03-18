@@ -1,2 +1,25 @@
 
 Data/instantclient_21_13/adrci.exe
+Data/instantclient_21_13/oci.dll
+Data/instantclient_21_13/oci.sym
+Data/instantclient_21_13/ocijdbc21.dll
+Data/instantclient_21_13/ocijdbc21.sym
+Data/instantclient_21_13/ociw32.dll
+Data/instantclient_21_13/ociw32.sym
+Data/instantclient_21_13/ojdbc8.jar
+Data/instantclient_21_13/oramysql.dll
+Data/instantclient_21_13/oramysql.sym
+Data/instantclient_21_13/orannzsbb.dll
+Data/instantclient_21_13/orannzsbb.sym
+Data/instantclient_21_13/oraocci21.dll
+Data/instantclient_21_13/oraocci21.sym
+Data/instantclient_21_13/oraocci21d.dll
+Data/instantclient_21_13/oraocci21d.sym
+Data/instantclient_21_13/oraociei.dll
+Data/instantclient_21_13/oraociei.sym
+Data/instantclient_21_13/orasql.dll
+Data/instantclient_21_13/orasql.sym
+Data/instantclient_21_13/ucp.jar
+Data/instantclient_21_13/uidrvci.exe
+Data/instantclient_21_13/uidrvci.sym
+Data/instantclient_21_13/xstreams.jar
