@@ -3,6 +3,10 @@ import cx_Oracle
 import time
 import os
 
+# check import module path
+import sys
+sys.path.append(os.path.abspath(os.path.join(os.getcwd(), os.pardir)))
+
 # Print the current working directory's parent directory
 PATH = os.path.abspath(os.path.join(os.getcwd(), os.pardir))
 
