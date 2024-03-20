@@ -5,16 +5,11 @@ import os
 import sys
 sys.path.append(os.path.abspath(os.path.join(os.getcwd(), os.pardir)))
 
-# Adding input for start time and end time
-START_TIME = "'01jan23'"
+START_TIME = "'01jan23'" # Replace with your own start date
+END_TIME = "'31Dec23'"  # Replace with your own end date
 
-# Print the current working directory's parent directory
-PATH = os.path.abspath(os.path.join(os.getcwd(), os.pardir))
-
-# Set the data folder path (update the path as needed)
-DATA_FOLDER = PATH + r'\Data'
-
-cx_Oracle.init_oracle_client(lib_dir= DATA_FOLDER + r'\instantclient_21_13')
+DB_USER = "planningadmin"   # Replace with your own username
+DB_PASSWORD = "planningadmin"  # Replace with your own password
 
 STATION_DICT = {'addison': "'1420'", 
                 'airport': "'890', '930'",
@@ -25,7 +20,42 @@ STATION_DICT = {'addison': "'1420'",
                 }
 
 
-def pull_data(station, cursor, start_date = "'01jan23'", end_date = "'31Dec23'"):
+PATH = os.path.abspath(os.path.join(os.getcwd(), os.pardir))
+DATA_FOLDER = PATH + r'\Data'
+cx_Oracle.init_oracle_client(lib_dir= DATA_FOLDER + r'\instantclient_21_13')
+
+
+
+
+def main():
+
+    # Define your Oracle connection details
+    db_user = DB_USER
+    db_password = DB_PASSWORD
+    db_host = "10.48.69.67"
+    db_port = "1521"
+    db_service_name = "cpc2ds"
+
+    # Construct the connection string
+    dsn = cx_Oracle.makedsn(db_host, db_port, service_name=db_service_name)
+
+    # Establish the connection
+    connection = cx_Oracle.connect(user=db_user, password=db_password, dsn=dsn)
+
+    # Create a cursor
+    cursor = connection.cursor()
+
+    # Pull data for each station
+    for station in STATION_DICT.keys():
+        pull_data(station, cursor, start_date = START_TIME, end_date = END_TIME)
+
+    # Close the cursor and connection
+    cursor.close()
+    connection.close()
+
+
+
+def pull_data(station, cursor, start_date, end_date):
     """
     Pull data from the Oracle database
     """
@@ -66,31 +96,8 @@ def pull_data(station, cursor, start_date = "'01jan23'", end_date = "'31Dec23'")
     except cx_Oracle.DatabaseError as e:
         print(f"Error executing the query: {e}")
 
-def main():
-    
-    # Define your Oracle connection details
-    db_user = "planningadmin"
-    db_password = "planningadmin"
-    db_host = "10.48.69.67"
-    db_port = "1521"
-    db_service_name = "cpc2ds"
 
-    # Construct the connection string
-    dsn = cx_Oracle.makedsn(db_host, db_port, service_name=db_service_name)
 
-    # Establish the connection
-    connection = cx_Oracle.connect(user=db_user, password=db_password, dsn=dsn)
-
-    # Create a cursor
-    cursor = connection.cursor()
-
-    # Pull data for each station
-    for station in STATION_DICT.keys():
-        pull_data(station, cursor)
-
-    # Close the cursor and connection
-    cursor.close()
-    connection.close()
 
 
 
