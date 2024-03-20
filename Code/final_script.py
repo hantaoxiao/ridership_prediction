@@ -97,7 +97,7 @@ def analysis(data, place, event_lst):
     plt.xlabel('Date')
     plt.ylabel('Residuals')
     plt.title('Residuals for 2023')
-    plt.savefig(OUTPUT_FOLDER + f'\{place}_residuals.png')
+    plt.savefig(OUTPUT_FOLDER + f'\img\{place}_residuals.png')
 
     # save actual vs. predicted ridership with event effect and without event effect
     plt.figure(figsize=(20, 6))
@@ -108,14 +108,14 @@ def analysis(data, place, event_lst):
     plt.ylabel('Ridership')
     plt.title(f'Ridership Regression for 2023 in {place} with and without event effect')
     plt.legend()
-    plt.savefig(OUTPUT_FOLDER + f'\{place}_ridership.png')
+    plt.savefig(OUTPUT_FOLDER + f'\img\{place}_ridership.png')
 
 
 
     # Calculate coefficients
     coefficients = pd.DataFrame({'Feature': X_train.columns, 'Coefficient': grid_search.best_estimator_.coef_})
 
-    coefficients = coefficients.sort_values('Coefficient', ascending=False)
+    #coefficients = coefficients.sort_values('Coefficient', ascending=False)
     
 
     # Add predicted values to the dataframe, right next to the actual values
@@ -123,7 +123,7 @@ def analysis(data, place, event_lst):
     Linear_train['predicted'] = y_pred
 
     # Save the results to an Excel file
-    with pd.ExcelWriter(OUTPUT_FOLDER + f'\{place}_analysis_results.xlsx', engine='xlsxwriter') as writer:
+    with pd.ExcelWriter(OUTPUT_FOLDER + f'\excel\{place}_analysis_results.xlsx', engine='xlsxwriter') as writer:
         # Write the Linear_train dataframe to a sheet named 'Predictions'
         Linear_train.to_excel(writer, sheet_name='Predictions', index=False)
 
@@ -137,7 +137,7 @@ def get_clean_data(raw_path, place_name):
     temperature = pd.read_csv(DATA_FOLDER + '\\Clean\\' + 'temperature.csv')
     event_list = json.load(open(r'event_list.json', 'r'))
     event_data = pd.read_csv(DATA_FOLDER + r'\Event\event.csv')[event_list[place_name] + ['date']]
-    
+    #event_data = pd.read_csv(DATA_FOLDER + r'\Event\event.csv')[event_list['roosevelt'] + ['date']]
 
     # preporcess the temperature data
     temperature['DATE'] = pd.to_datetime(temperature['DATE'])
@@ -174,7 +174,7 @@ def get_clean_data(raw_path, place_name):
 
 if __name__ == '__main__':
     # run the pull_data script
-    pull_data.main()
+    #pull_data.main()
     
     # Read the data
     event_list = json.load(open(r'event_list.json', 'r'))

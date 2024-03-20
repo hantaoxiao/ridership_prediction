@@ -2,10 +2,11 @@ import pandas as pd
 import cx_Oracle
 import time
 import os
-
-# check import module path
 import sys
 sys.path.append(os.path.abspath(os.path.join(os.getcwd(), os.pardir)))
+
+# Adding input for start time and end time
+START_TIME = "'01jan23'"
 
 # Print the current working directory's parent directory
 PATH = os.path.abspath(os.path.join(os.getcwd(), os.pardir))
@@ -17,11 +18,14 @@ cx_Oracle.init_oracle_client(lib_dir= DATA_FOLDER + r'\instantclient_21_13')
 
 STATION_DICT = {'addison': "'1420'", 
                 'airport': "'890', '930'",
-                 'grantpark': "'1400','1490', '560', '680', '850'"
+                 'grantpark': "'1400','1490', '560', '680', '850'",
+                 'roosevelt': "'1400'",
+                 'ohare': "'890'",
+                 'midway': '930'
                 }
 
 
-def pull_data(station, cursor, start_date = "'01jan19'", end_date = "'31jan24'"):
+def pull_data(station, cursor, start_date = "'01jan23'", end_date = "'31Dec23'"):
     """
     Pull data from the Oracle database
     """
