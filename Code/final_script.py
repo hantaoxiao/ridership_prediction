@@ -61,8 +61,11 @@ def analysis(data, place, event_lst):
     data = pd.get_dummies(data, columns=categorical_features, dtype=int)
 
     # Split the data into training and testing sets
-    Linear_train = data[data['year'] == 2023]
-    Linear_test = data[data['year'] == 2023]
+    # Linear_train = data[data['year'] == 2023]
+    # Linear_test = data[data['year'] == 2023]
+
+    Linear_train = data.copy()
+    Linear_test = data.copy()
 
 
     # Clean event effect
@@ -102,7 +105,7 @@ def analysis(data, place, event_lst):
     # save actual vs. predicted ridership with event effect and without event effect
     plt.figure(figsize=(20, 6))
     plt.plot(Linear_test['date'], y_test, label='Actual')
-    plt.plot(Linear_test['date'], y_pred, label='Predicted', alpha=0.5, color='green')
+    #plt.plot(Linear_test['date'], y_pred, label='Predicted', alpha=0.5, color='green')
     plt.plot(Linear_test['date'], y_pred_event, label='Predicted_event', alpha=0.5, color='red')
     plt.xlabel('Date')
     plt.ylabel('Ridership')

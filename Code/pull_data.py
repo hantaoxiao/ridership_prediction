@@ -6,17 +6,14 @@ import sys
 sys.path.append(os.path.abspath(os.path.join(os.getcwd(), os.pardir)))
 
 START_TIME = "'01jan23'" # Replace with your own start date
-END_TIME = "'31Dec23'"  # Replace with your own end date
+END_TIME = "'31dec23'"  # Replace with your own end date
 
 DB_USER = "planningadmin"   # Replace with your own username
 DB_PASSWORD = "planningadmin"  # Replace with your own password
 
 STATION_DICT = {'addison': "'1420'", 
                 'airport': "'890', '930'",
-                 'grantpark': "'1400','1490', '560', '680', '850'",
-                 'roosevelt': "'1400'",
-                 'ohare': "'890'",
-                 'midway': '930'
+                 'grantpark': "'1400','1490', '560', '680', '850'"
                 }
 
 
