@@ -137,7 +137,7 @@ def analysis(data, place, event_lst):
 def get_clean_data(raw_path, place_name):
     # Read the data
     raw_data = pd.read_csv(raw_path)
-    temperature = pd.read_csv(DATA_FOLDER + '\\Clean\\' + 'temperature.csv')
+    temperature = pd.read_csv(DATA_FOLDER + '\\Event\\' + 'temperature.csv')
     event_list = json.load(open(r'event_list.json', 'r'))
     event_data = pd.read_csv(DATA_FOLDER + r'\Event\event.csv')[event_list[place_name] + ['date']]
     #event_data = pd.read_csv(DATA_FOLDER + r'\Event\event.csv')[event_list['roosevelt'] + ['date']]
@@ -175,9 +175,9 @@ def get_clean_data(raw_path, place_name):
 
 
 
-if __name__ == '__main__':
+def main(start_date, end_date, STATION_DICT):
     # run the pull_data script
-    pull_data.main()
+    pull_data.main(f"'{start_date}'", f"'{end_date}'", STATION_DICT)
     
     # Read the data
     event_list = json.load(open(r'event_list.json', 'r'))

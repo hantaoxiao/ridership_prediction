@@ -5,16 +5,18 @@ import os
 import sys
 sys.path.append(os.path.abspath(os.path.join(os.getcwd(), os.pardir)))
 
-START_TIME = "'01jan23'" # Replace with your own start date
-END_TIME = "'31dec23'"  # Replace with your own end date
+
 
 DB_USER = "planningadmin"   # Replace with your own username
 DB_PASSWORD = "planningadmin"  # Replace with your own password
 
-STATION_DICT = {'addison': "'1420'", 
-                'airport': "'890', '930'",
-                 'grantpark': "'1400','1490', '560', '680', '850'"
-                }
+# START_TIME = "'01jan23'" # Replace with your own start date
+# END_TIME = "'31dec23'"  # Replace with your own end date
+
+# STATION_DICT = {'addison': "'1420'", 
+#                 'airport': "'890', '930'",
+#                  'grantpark': "'1400','1490', '560', '680', '850'"
+#                 }
 
 
 PATH = os.path.abspath(os.path.join(os.getcwd(), os.pardir))
@@ -24,7 +26,7 @@ cx_Oracle.init_oracle_client(lib_dir= DATA_FOLDER + r'\instantclient_21_13')
 
 
 
-def main():
+def main(START_TIME, END_TIME, STATION_DICT):
 
     # Define your Oracle connection details
     db_user = DB_USER
@@ -41,10 +43,9 @@ def main():
 
     # Create a cursor
     cursor = connection.cursor()
-
     # Pull data for each station
     for station in STATION_DICT.keys():
-        pull_data(station, cursor, start_date = START_TIME, end_date = END_TIME)
+        pull_data(station, cursor, start_date = START_TIME, end_date = END_TIME, STATION_DICT = STATION_DICT)
 
     # Close the cursor and connection
     cursor.close()
@@ -52,13 +53,10 @@ def main():
 
 
 
-def pull_data(station, cursor, start_date, end_date):
+def pull_data(station, cursor, start_date, end_date, STATION_DICT):
     """
     Pull data from the Oracle database
     """
-
-    # make STATION_DICT a global variable
-    global STATION_DICT
 
     # Define the SQL query
     sql_query = f"""
